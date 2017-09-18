@@ -1,4 +1,4 @@
-# lambda-erlang
+# An Erlang Backend of Lambda Calculus
 
 
 ## Step1: Install Erlang
