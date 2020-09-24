@@ -21,4 +21,3 @@ Atom -> '(' Expr ')': '$2'.
 Atom -> symbol : {var, '$1'}.
 
 Erlang code.
-

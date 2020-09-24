@@ -10,16 +10,18 @@ main(Args) ->
             {ok, Binary} = file:read_file(File),
             String = erlang:binary_to_list(Binary),
             Result = show(eval(term(String), Opts), Opts),
-            io:format("Result:~n~s~n", [Result]), halt(0)
-        catch Class:Reason ->
-            io:format("Runtime Error:~nClass = ~p~n"
-                "Reason = ~p~nStack = ~p~n", [Class
-                , Reason, erlang:get_stacktrace()]),
+            io:format("Result:~n~s~n", [Result]),
+            halt(0)
+        catch Class:Reason:Stacktrace ->
+            io:format("Runtime Error:~n", []),
+            io:format("Class = ~p~n", [Class]),
+            io:format("Reason = ~p~n", [Reason]),
+            io:format("Stacktrace = ~p~n", [Stacktrace]),
             halt(1)
         end;
-    #{help := true}     -> usage(), halt(0);
-    _                   -> usage(), halt(1)
-    catch _:_           -> usage(), halt(1)
+    #{help := true} -> usage(), halt(0);
+    _               -> usage(), halt(1)
+    catch _:_       -> usage(), halt(1)
     end.
 
 

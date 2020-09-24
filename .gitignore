@@ -1,5 +1,4 @@
+.idea
 *.beam
 lambda_scanner.erl
 lambda_parse.erl
-
-
